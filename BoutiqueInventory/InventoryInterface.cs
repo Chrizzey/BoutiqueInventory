@@ -2,9 +2,9 @@
 {
     public class InventoryConsoleInterface
     {
-        private readonly Inventory _inventory;
+        private readonly IInventory _inventory;
 
-        public InventoryConsoleInterface(Inventory inventory)
+        public InventoryConsoleInterface(IInventory inventory)
         {
             _inventory = inventory;
         }

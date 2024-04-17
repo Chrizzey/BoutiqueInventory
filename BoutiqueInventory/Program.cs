@@ -1,6 +1,4 @@
-﻿using BoutiqueInventory.Articles;
-
-namespace BoutiqueInventory
+﻿namespace BoutiqueInventory
 {
     internal class Program
     {
@@ -9,10 +7,20 @@ namespace BoutiqueInventory
             Console.WriteLine("Boutique Hans Mueller");
 
             var inventory = new Inventory();
-            // inventory mit dummy daten füllen
+            if (IsStartedInDevMode(args))
+            {
+                // fill inventory with test data
+                var dummyInventory = new DummyInventory();
+                dummyInventory.Fill(inventory);
+            }
 
             var consoleInterface = new InventoryConsoleInterface(inventory);
             consoleInterface.Start();
+        }
+
+        private static bool IsStartedInDevMode(IEnumerable<string> args)
+        {
+            return args.Contains("--dev");
         }
     }
 }

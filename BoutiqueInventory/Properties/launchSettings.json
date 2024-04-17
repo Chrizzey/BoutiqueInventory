@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BoutiqueInventory": {
+      "commandName": "Project",
+      "commandLineArgs": "--dev"
+    }
+  }
+}
