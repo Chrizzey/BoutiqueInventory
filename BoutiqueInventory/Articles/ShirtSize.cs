@@ -9,7 +9,6 @@ namespace BoutiqueInventory.Articles
         M,
         L,
         XL,
-        XXL,
-        XXXL
+        XXL
     }
 }

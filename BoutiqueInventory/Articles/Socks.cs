@@ -1,5 +1,9 @@
-﻿namespace BoutiqueInventory.Articles
+﻿using System.Diagnostics;
+
+namespace BoutiqueInventory.Articles
 {
+
+    [DebuggerDisplay("[ID {Number}] {PackageSize}-pack of {Color} socks in size {Size}")]
     public class Socks : Footwear
     {
         /// <summary>
