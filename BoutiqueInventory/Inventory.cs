@@ -1,34 +1,52 @@
-﻿using BoutiqueInventory.Articles;
+﻿using System.Collections.ObjectModel;
+using BoutiqueInventory.Articles;
 
 namespace BoutiqueInventory
 {
-    public class Inventory
+    public class Inventory : IInventory
     {
-        private List<Article> _articles;
+        private readonly Dictionary<int, Article> _articles;
+
+        public Inventory()
+        {
+            _articles = new Dictionary<int, Article>();
+        }
 
         public void AddArticle(Article article)
         {
-            throw new System.NotImplementedException();
+            if (_articles.ContainsKey(article.Number))
+            {
+                throw new InvalidOperationException("An article with the same number already exists");
+            }
+
+            _articles.Add(article.Number, article);
+        }
+
+        public void RemoveArticle(Article article)
+        {
+            RemoveArticle(article.Number);
         }
 
         public void RemoveArticle(int number)
         {
-            throw new System.NotImplementedException();
+            _articles.Remove(number);
         }
 
         public IEnumerable<Article> GetAllArticles()
         {
-            throw new System.NotImplementedException();
+            return new ReadOnlyCollection<Article>(_articles.Values.ToArray());
         }
 
         public Article GetArticleByNumber(int number)
         {
-            throw new System.NotImplementedException();
+            return _articles.ContainsKey(number)
+                ? _articles[number] 
+                : null;
         }
 
         public IEnumerable<T> GetArticlesByType<T>() where T : Article
         {
-            throw new System.NotImplementedException();
+            return new ReadOnlyCollection<T>(_articles.Values.OfType<T>().ToArray());
         }
     }
 }
